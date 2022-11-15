@@ -8,23 +8,14 @@ public class CarController : MonoBehaviour
 
     public float carSpeed;
     public float limitX;
-    public float curTime;
-    public float coolTime = 2;
-
+  
     void Start()
     {
-        
+        carSpeed = Random.Range(5, 15);
     }
 
     void Update()
     {
-        curTime += Time.deltaTime;
-        if(curTime > coolTime)
-        {
-            Instantiate(gameObject);
-            curTime = 0;
-        }
-
         transform.Translate(carSpeed * Time.deltaTime, 0, 0);
         if (transform.position.x > limitX)
         {

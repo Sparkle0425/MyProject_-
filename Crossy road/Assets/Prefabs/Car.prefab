@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2955797681517756752}
   - component: {fileID: 2955797681517756753}
   - component: {fileID: 2955797681517756758}
-  - component: {fileID: 2955797681517756759}
+  - component: {fileID: -7021783913406105400}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -98,7 +98,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2955797681517756759
+--- !u!114 &-7021783913406105400
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,8 +110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37a0bfd909d5dd14bb5573a6831dd089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originpos: {x: -10, y: 0, z: 2}
+  originpos: {x: 0, y: 0, z: 0}
   carSpeed: 5
   limitX: 10
-  curTime: 0
-  coolTime: 2
