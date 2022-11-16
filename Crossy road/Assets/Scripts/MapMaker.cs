@@ -6,9 +6,11 @@ public class MapMaker : MonoBehaviour
 {
     public GameObject[] mapObjectPrefab;
 
+    public int mapLength;
+
     void Start()
     {
-        for (int i = 0; i < 1; i++)
+        for (int i = 0; i < 40; i++)
         {
             for (int j = 0; j < 30; j++)
             {
@@ -22,6 +24,19 @@ public class MapMaker : MonoBehaviour
 
     void Update()
     {
-
+        if(Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            for (int i = 0; i < mapLength; i++)
+            {
+                for (int j = 0; j < 30; j++)
+                {
+                    GameObject ground = Instantiate(mapObjectPrefab[0]);
+                    ground.gameObject.name = ground.tag + $"({j}, {i})";
+                    ground.transform.parent = GameObject.Find("Ground").transform;
+                    ground.transform.localPosition = new Vector3(j, -1, i+40);
+                }
+            }
+            mapLength++;
+        }
     }
 }

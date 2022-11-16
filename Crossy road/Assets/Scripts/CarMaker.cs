@@ -8,12 +8,18 @@ public class CarMaker : MonoBehaviour
     public float coolTime = 2;
 
     public GameObject carPrefab;
+
     void Start()
     {
         
     }
 
     void Update()
+    {
+        MakeCar();
+    }
+
+    void MakeCar()
     {
         curTime += Time.deltaTime;
         if (curTime > coolTime)
@@ -23,7 +29,6 @@ public class CarMaker : MonoBehaviour
             curTime = 0;
             RndCoolTime();
         }
-
     }
 
     void RndCoolTime()

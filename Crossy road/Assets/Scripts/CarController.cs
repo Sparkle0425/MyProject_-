@@ -16,12 +16,12 @@ public class CarController : MonoBehaviour
 
     void Update()
     {
+        RndCarSpeed();
         transform.Translate(carSpeed * Time.deltaTime, 0, 0);
         if (transform.position.x > limitX)
         {
             Destroy(gameObject);
         }
-        RndCarSpeed();
     }
 
     void RndCarSpeed()
