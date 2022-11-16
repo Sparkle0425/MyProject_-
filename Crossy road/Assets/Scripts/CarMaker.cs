@@ -13,7 +13,6 @@ public class CarMaker : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         curTime += Time.deltaTime;
@@ -22,6 +21,13 @@ public class CarMaker : MonoBehaviour
             GameObject car = Instantiate(carPrefab) as GameObject;
             car.transform.position = new Vector3(-10, 0, 2);
             curTime = 0;
+            RndCoolTime();
         }
+
+    }
+
+    void RndCoolTime()
+    {
+        coolTime = Random.Range(2, 5);
     }
 }

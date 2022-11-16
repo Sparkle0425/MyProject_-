@@ -6,12 +6,12 @@ public class CarController : MonoBehaviour
 {
     public Vector3 originpos;
 
-    public float carSpeed;
+    public float carSpeed = 5;
     public float limitX;
   
     void Start()
     {
-        carSpeed = Random.Range(5, 15);
+        
     }
 
     void Update()
@@ -21,5 +21,11 @@ public class CarController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        RndCarSpeed();
+    }
+
+    void RndCarSpeed()
+    {
+        carSpeed = Random.Range(5, 10);
     }
 }

@@ -13,10 +13,10 @@ public class PlayerController : MonoBehaviour
 
     public GameObject coinPrefab;
     public GameObject carPrefab;
-    public GameObject gameOverText;
 
     public BoxCollider playercollider;
 
+    public GameObject gameOverText;
     public Text coinCntText;
 
     public Transform playerCharacter;
@@ -65,9 +65,9 @@ public class PlayerController : MonoBehaviour
                     Debug.Log("그쪽은 돌이야!!");
                     break;
                 case "Coin":
+                    transform.Translate(dir);
                     coinCnt++;
                     Destroy(coinPrefab);
-                    transform.Translate(dir);
                     break;
                 case "Car":
                     playercollider.size = new Vector3(0, 0, 0);
