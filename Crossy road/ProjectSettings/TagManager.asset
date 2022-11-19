@@ -8,6 +8,9 @@ TagManager:
   - Tree
   - Rock
   - Car
+  - Road
+  - Driveway
+  - Wall
   layers:
   - Default
   - TransparentFX

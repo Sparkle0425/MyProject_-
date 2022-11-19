@@ -5,6 +5,15 @@ using UnityEngine;
 public class MapMaker : MonoBehaviour
 {
     public GameObject[] mapObjectPrefab;
+    public GameObject carMaker;
+
+
+    public float curTime;
+    public float coolTime = 2;
+
+    public float carSpeed = 5;
+
+    public int mapLength;
 
     public int mapLength;
 
@@ -12,31 +21,48 @@ public class MapMaker : MonoBehaviour
     {
         for (int i = 0; i < 40; i++)
         {
-            for (int j = 0; j < 30; j++)
+            for (int j = 0; j < 1; j++)
             {
                 GameObject ground = Instantiate(mapObjectPrefab[0]);
                 ground.gameObject.name = ground.tag + $"({j}, {i})";
                 ground.transform.parent = GameObject.Find("Ground").transform;
-                ground.transform.localPosition = new Vector3(j, -1, i);
+                ground.transform.localPosition = new Vector3(-j, -1, i);
             }
         }
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.UpArrow))
+        MapMake();
+    }
+
+    void MapMake()
+    {
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.UpArrow))
         {
-            for (int i = 0; i < mapLength; i++)
+            int rnd = Random.Range(0, 100);
+            if (rnd > 35)
             {
-                for (int j = 0; j < 30; j++)
-                {
-                    GameObject ground = Instantiate(mapObjectPrefab[0]);
-                    ground.gameObject.name = ground.tag + $"({j}, {i})";
-                    ground.transform.parent = GameObject.Find("Ground").transform;
-                    ground.transform.localPosition = new Vector3(j, -1, i+40);
-                }
+                    for (int j = 0; j < 1; j++)
+                    {
+                        GameObject ground = Instantiate(mapObjectPrefab[0]);
+                        ground.gameObject.name = ground.tag + $"({j})";
+                        ground.transform.parent = GameObject.Find("Ground").transform;
+                        ground.transform.localPosition = new Vector3(-j, -1, mapLength);
+                    }
+                mapLength++;
             }
-            mapLength++;
+            else
+            {
+                    for (int j = 0; j < 1; j++)
+                    {
+                        GameObject ground = Instantiate(mapObjectPrefab[1]);
+                        ground.gameObject.name = ground.tag + $"({j})";
+                        ground.transform.parent = GameObject.Find("Ground").transform;
+                        ground.transform.localPosition = new Vector3(-j, -1, mapLength);
+                    }
+                mapLength++;
+            }
         }
     }
 }

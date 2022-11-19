@@ -7,11 +7,14 @@ public class CarMaker : MonoBehaviour
     public float curTime;
     public float coolTime = 2;
 
+    public float carSpeed = 5;
+
     public GameObject carPrefab;
 
     void Start()
     {
-        
+        GameObject car = Instantiate(carPrefab) as GameObject;
+        car.transform.position = new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z);
     }
 
     void Update()
@@ -25,14 +28,14 @@ public class CarMaker : MonoBehaviour
         if (curTime > coolTime)
         {
             GameObject car = Instantiate(carPrefab) as GameObject;
-            car.transform.position = new Vector3(-10, 0, 2);
-            curTime = 0;
+            car.transform.position = new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z);
             RndCoolTime();
+            curTime = 0;
         }
     }
 
     void RndCoolTime()
     {
-        coolTime = Random.Range(2, 5);
+        coolTime = Random.Range(3, 7);
     }
 }
