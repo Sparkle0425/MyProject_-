@@ -15,8 +15,6 @@ public class MapMaker : MonoBehaviour
 
     public int mapLength;
 
-    public int mapLength;
-
     void Start()
     {
         for (int i = 0; i < 40; i++)

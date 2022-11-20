@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class LayerNo : MonoBehaviour
 {
     void Start()
     {
@@ -11,6 +11,11 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        
+
+    }
+
+    private void FixedUpdate()
+    {
+        Physics2D.IgnoreLayerCollision(6, 7);
     }
 }
