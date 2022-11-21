@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CoinController : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class CoinController : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     void Update()
@@ -35,7 +36,6 @@ public class CoinController : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            CoinCut++;
             Destroy(gameObject);
         }
     }

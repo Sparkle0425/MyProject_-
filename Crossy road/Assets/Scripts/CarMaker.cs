@@ -7,14 +7,11 @@ public class CarMaker : MonoBehaviour
     public float curTime;
     public float coolTime = 2;
 
-    public float carSpeed = 5;
-
     public GameObject carPrefab;
 
     void Start()
     {
-        GameObject car = Instantiate(carPrefab) as GameObject;
-        car.transform.position = new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z);
+
     }
 
     void Update()

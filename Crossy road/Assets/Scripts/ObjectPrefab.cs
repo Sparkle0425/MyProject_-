@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ObjectPrefab : MonoBehaviour
 {
+    public float limitZ;
     void Start()
     {
         

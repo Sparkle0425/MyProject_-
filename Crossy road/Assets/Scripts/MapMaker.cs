@@ -15,8 +15,6 @@ public class MapMaker : MonoBehaviour
 
     public int mapLength;
 
-    public int mapLength;
-
     void Start()
     {
         for (int i = 0; i < 40; i++)
@@ -33,19 +31,37 @@ public class MapMaker : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.UpArrow))
+        if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
         {
-            for (int i = 0; i < mapLength; i++)
+            int rnd = Random.Range(0, 100);
+            if(rnd >= 40)
             {
-                for (int j = 0; j < 30; j++)
+                for (int i = 0; i < 1; i++)
                 {
-                    GameObject ground = Instantiate(mapObjectPrefab[0]);
-                    ground.gameObject.name = ground.tag + $"({j}, {i})";
-                    ground.transform.parent = GameObject.Find("Ground").transform;
-                    ground.transform.localPosition = new Vector3(j, -1, i+40);
+                    for (int j = 0; j < 1; j++)
+                    {
+                        GameObject ground = Instantiate(mapObjectPrefab[0]);
+                        ground.gameObject.name = ground.tag + $"({j}, {i})";
+                        ground.transform.parent = GameObject.Find("Ground").transform;
+                        ground.transform.localPosition = new Vector3(-j, -1, i + mapLength);
+                    }
                 }
+                mapLength++;
             }
-            mapLength++;
+            else
+            {
+                for (int i = 0; i < 1; i++)
+                {
+                    for (int j = 0; j < 1; j++)
+                    {
+                        GameObject ground = Instantiate(mapObjectPrefab[1]);
+                        ground.gameObject.name = ground.tag + $"({j}, {i})";
+                        ground.transform.parent = GameObject.Find("Ground").transform;
+                        ground.transform.localPosition = new Vector3(-j, -1, i + mapLength);
+                    }
+                }
+                mapLength++;
+            }
         }
     }
 }
