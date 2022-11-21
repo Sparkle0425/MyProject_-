@@ -38,7 +38,6 @@ public class PlayerController : MonoBehaviour
             {
                 ground.transform.position = new Vector3(-10, 0, ground.transform.position.z);
             }
-
         }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
@@ -60,8 +59,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.tag == "Tree")
         {
-            Debug.Log(gameObject.tag);
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z + 1);
+            Debug.Log(gameObject.name);
         }
     }
 }
