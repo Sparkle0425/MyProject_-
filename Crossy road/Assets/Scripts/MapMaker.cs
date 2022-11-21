@@ -15,6 +15,8 @@ public class MapMaker : MonoBehaviour
 
     public int mapLength;
 
+    public int mapLength;
+
     void Start()
     {
         for (int i = 0; i < 40; i++)
@@ -31,36 +33,19 @@ public class MapMaker : MonoBehaviour
 
     void Update()
     {
-        MapMake();
-    }
-
-    void MapMake()
-    {
-        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.UpArrow))
+        if(Input.GetKeyDown(KeyCode.UpArrow))
         {
-            int rnd = Random.Range(0, 100);
-            if (rnd > 35)
+            for (int i = 0; i < mapLength; i++)
             {
-                    for (int j = 0; j < 1; j++)
-                    {
-                        GameObject ground = Instantiate(mapObjectPrefab[0]);
-                        ground.gameObject.name = ground.tag + $"({j})";
-                        ground.transform.parent = GameObject.Find("Ground").transform;
-                        ground.transform.localPosition = new Vector3(-j, -1, mapLength);
-                    }
-                mapLength++;
+                for (int j = 0; j < 30; j++)
+                {
+                    GameObject ground = Instantiate(mapObjectPrefab[0]);
+                    ground.gameObject.name = ground.tag + $"({j}, {i})";
+                    ground.transform.parent = GameObject.Find("Ground").transform;
+                    ground.transform.localPosition = new Vector3(j, -1, i+40);
+                }
             }
-            else
-            {
-                    for (int j = 0; j < 1; j++)
-                    {
-                        GameObject ground = Instantiate(mapObjectPrefab[1]);
-                        ground.gameObject.name = ground.tag + $"({j})";
-                        ground.transform.parent = GameObject.Find("Ground").transform;
-                        ground.transform.localPosition = new Vector3(-j, -1, mapLength);
-                    }
-                mapLength++;
-            }
+            mapLength++;
         }
     }
 }

@@ -19,6 +19,11 @@ public class CarMaker : MonoBehaviour
 
     void Update()
     {
+        MakeCar();
+    }
+
+    void MakeCar()
+    {
         curTime += Time.deltaTime;
         if (curTime > coolTime)
         {
