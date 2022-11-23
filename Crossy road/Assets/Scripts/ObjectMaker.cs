@@ -10,24 +10,44 @@ public class ObjectMaker : MonoBehaviour
 
     void Start()
     {
-        int rnd = Random.Range(0, 100);
-        if (rnd >= 90)
+        int rnd = Random.Range(0, 3);
+        if(rnd == 0)
         {
-            GameObject tree = Instantiate(treePrefab) as GameObject;
-            tree.transform.position = new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z);
-            tree.transform.parent = GameObject.Find("Object").transform;
+            int rud = Random.Range(0, 100);
+            if (rud >= 90)
+            {
+                GameObject tree = Instantiate(treePrefab) as GameObject;
+                tree.transform.position = new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z);
+                tree.transform.parent = GameObject.Find("Object").transform;
+                if(tree.transform.position == coinPrefab.transform.position)
+                {
+                    Destroy(tree);
+                }
+            }
         }
-
-        if (rnd >= 95)
+        else if(rnd == 1)
         {
-            GameObject coin = Instantiate(treePrefab) as GameObject;
-            coin.transform.position = new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z);
-            coin.transform.parent = GameObject.Find("Object").transform;
+            int rud = Random.Range(0, 100);
+            if (rud >= 90)
+            {
+                GameObject tree = Instantiate(treePrefab) as GameObject;
+                tree.transform.position = new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z);
+                tree.transform.parent = GameObject.Find("Object").transform;
+                if (tree.transform.position == coinPrefab.transform.position)
+                {
+                    Destroy(tree);
+                }
+            }
         }
-    }
-
-    void Update()
-    {
-
+        else
+        {
+            int rud = Random.Range(0, 100);
+            if (rud >= 95)
+            {
+                GameObject coin = Instantiate(treePrefab) as GameObject;
+                coin.transform.position = new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z);
+                coin.transform.parent = GameObject.Find("Object").transform;
+            }
+        }
     }
 }

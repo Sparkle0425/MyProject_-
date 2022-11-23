@@ -7,31 +7,40 @@ public class MapMaker : MonoBehaviour
     public GameObject[] mapObjectPrefab;
     public GameObject carMaker;
 
-
-    public float curTime;
-    public float coolTime = 2;
-
-    public float carSpeed = 5;
-
     public int mapLength;
+
+    public int startMap;
 
     void Start()
     {
         for (int i = 0; i < 40; i++)
         {
-            for (int j = 0; j < 1; j++)
+            if(i % 8 == 0 || i % 9 ==0)
             {
-                GameObject ground = Instantiate(mapObjectPrefab[0]);
-                ground.gameObject.name = ground.tag + $"({j}, {i})";
-                ground.transform.parent = GameObject.Find("Ground").transform;
-                ground.transform.localPosition = new Vector3(-j, -1, i);
+                for (int j = 0; j < 1; j++)
+                {
+                    GameObject ground = Instantiate(mapObjectPrefab[1]);
+                    ground.gameObject.name = ground.tag + $"({j}, {i})";
+                    ground.transform.parent = GameObject.Find("Ground").transform;
+                    ground.transform.localPosition = new Vector3(-j, -1, i);
+                }
+            }
+            else
+            {
+                for (int j = 0; j < 1; j++)
+                {
+                    GameObject ground = Instantiate(mapObjectPrefab[0]);
+                    ground.gameObject.name = ground.tag + $"({j}, {i})";
+                    ground.transform.parent = GameObject.Find("Ground").transform;
+                    ground.transform.localPosition = new Vector3(-j, -1, i);
+                }
             }
         }
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
+        if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.UpArrow))
         {
             int rnd = Random.Range(0, 100);
             if(rnd >= 40)

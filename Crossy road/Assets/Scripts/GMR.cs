@@ -2,21 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreManager : MonoBehaviour
+public class GMR : MonoBehaviour
 {
-    static ScoreManager _instance = null;
+    static GMR _instance = null;
 
-    public static ScoreManager Instance()
+    public static GMR Instance()
     {
         return _instance;
-    }
-
-    private void Awake()
-    {
-        if (_instance == null)
-            _instance = this;
-
-        LoadBestScore();
     }
 
     int _bestScore = 0;
@@ -50,8 +42,14 @@ public class ScoreManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("BestScore", _bestScore);
     }
-    void LoadBestScore()
+
+    void Start()
     {
-        _bestScore = PlayerPrefs.GetInt("BestScore");
+        
+    }
+
+    void Update()
+    {
+        
     }
 }

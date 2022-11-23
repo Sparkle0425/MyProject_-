@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObjectPrefab : MonoBehaviour
 {
-    public float limitZ;
+    public float limitZ = 10;
     void Start()
     {
         
@@ -27,6 +27,11 @@ public class ObjectPrefab : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z + 1);
+        }
+
+        if (gameObject.transform.position.z <= -limitZ)
+        {
+            Destroy(gameObject);
         }
     }
 }

@@ -26,6 +26,7 @@ public class CarMaker : MonoBehaviour
         {
             GameObject car = Instantiate(carPrefab) as GameObject;
             car.transform.position = new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z);
+            car.transform.parent = GameObject.Find("Object").transform;
             RndCoolTime();
             curTime = 0;
         }
