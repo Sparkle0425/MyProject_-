@@ -6,11 +6,6 @@ public class CoinController : MonoBehaviour
 {
     public int CoinCut;
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow))

@@ -9,11 +9,6 @@ public class CarMaker : MonoBehaviour
 
     public GameObject carPrefab;
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         MakeCar();

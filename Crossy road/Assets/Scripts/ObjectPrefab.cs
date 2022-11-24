@@ -5,10 +5,6 @@ using UnityEngine;
 public class ObjectPrefab : MonoBehaviour
 {
     public float limitZ = 10;
-    void Start()
-    {
-        
-    }
 
     void Update()
     {

@@ -20,18 +20,21 @@ public class PlayerController : MonoBehaviour
     public int coinCut = 0;
     public Text coinCutText;
 
-    int scoreCut = 0;
+    public int score;
     public Text scoreText;
 
     void Start()
     {
         playercollider = GetComponent<BoxCollider>();
-        coinCutText = GameObject.Find("CoinText").GetComponent<Text>();
-        scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
     }
 
     void Update()
     {
+        int myCurScore = GMR.Instance().myScore;
+        int myBestScore = GMR.Instance().bestScore;
+
+        scoreText.text = myCurScore + "\n" + myBestScore;
+
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             ground.transform.position = new Vector3(ground.transform.position.x + 1, 0, ground.transform.position.z);
@@ -50,13 +53,9 @@ public class PlayerController : MonoBehaviour
                 ground.transform.position = new Vector3(-10, 0, ground.transform.position.z);
             }
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetMouseButtonDown(0))
         {
             ground.transform.position = new Vector3(ground.transform.position.x, 0, ground.transform.position.z - 1);
-            scoreCut ++;
-
-            scoreCut = GMR.Instance().myScore;
-            int myCurScore = GMR.Instance().myScore;
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
@@ -72,7 +71,6 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        scoreText.text = scoreCut + "";
         coinCutText.text = coinCut + "";
     }
 
@@ -97,20 +95,30 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.tag == "Tree")
         {
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z + 1);
+                ground.transform.position = new Vector3(ground.transform.position.x, ground.transform.position.y, ground.transform.position.z - 1);
+                carPrefab.transform.position = new Vector3(carPrefab.transform.position.x, carPrefab.transform.position.y, carPrefab.transform.position.z - 1);
+                coinPrefab.transform.position = new Vector3(coinPrefab.transform.position.x, coinPrefab.transform.position.y, coinPrefab.transform.position.z - 1);
+                objectPtrfab.transform.position = new Vector3(objectPtrfab.transform.position.x, objectPtrfab.transform.position.y, objectPtrfab.transform.position.z - 1);
+            }
+        }
+        if (other.gameObject.tag == "Tree")
+        {
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 gameObject.transform.position = new Vector3(gameObject.transform.position.x - 1, gameObject.transform.position.y, gameObject.transform.position.z);
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (other.gameObject.tag == "Tree")
         {
-            if (other.gameObject.tag == "Tree")
+            if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 gameObject.transform.position = new Vector3(gameObject.transform.position.x + 1, gameObject.transform.position.y, gameObject.transform.position.z);
+
             }
         }
-
 
         if (other.gameObject.tag == "Coin")
         {

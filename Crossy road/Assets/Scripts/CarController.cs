@@ -9,15 +9,11 @@ public class CarController : MonoBehaviour
     public float carSpeed = 5;
     public float limitX = 20;
   
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         RndSpeed();
         transform.Translate(carSpeed * Time.deltaTime, 0, 0);
+
         if (transform.position.x > limitX)
         {
             Destroy(gameObject);

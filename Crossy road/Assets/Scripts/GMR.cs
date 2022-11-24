@@ -11,6 +11,14 @@ public class GMR : MonoBehaviour
         return _instance;
     }
 
+    private void Awake()
+    {
+        if (_instance == null)
+            _instance = this;
+
+        LoadBestScore();
+    }
+
     int _bestScore = 0;
     int _myScore = 0;
 
@@ -26,11 +34,14 @@ public class GMR : MonoBehaviour
     {
         get
         {
+            if(Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                _myScore++;
+            }
             return _myScore;
         }
         set
         {
-            _myScore = value;
             if (_myScore > _bestScore)
             {
                 _bestScore = _myScore;
@@ -38,18 +49,14 @@ public class GMR : MonoBehaviour
             }
         }
     }
+
     void SaveBestScore()
     {
         PlayerPrefs.SetInt("BestScore", _bestScore);
     }
 
-    void Start()
+    void LoadBestScore()
     {
-        
-    }
-
-    void Update()
-    {
-        
+        _bestScore = PlayerPrefs.GetInt("BestScore");
     }
 }
