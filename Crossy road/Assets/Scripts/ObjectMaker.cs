@@ -9,6 +9,7 @@ public class ObjectMaker : MonoBehaviour
 
     void Start()
     {
+        
             int rud = Random.Range(0, 100);
             if (rud >= 95)
             {

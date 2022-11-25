@@ -91,6 +91,7 @@ public class PlayerController : MonoBehaviour
                 carPrefab.transform.position = new Vector3(carPrefab.transform.position.x, carPrefab.transform.position.y, carPrefab.transform.position.z + 1);
                 coinPrefab.transform.position = new Vector3(coinPrefab.transform.position.x, coinPrefab.transform.position.y, coinPrefab.transform.position.z + 1);
                 objectPtrfab.transform.position = new Vector3(objectPtrfab.transform.position.x, objectPtrfab.transform.position.y, objectPtrfab.transform.position.z + 1);
+
             }
         }
         if (other.gameObject.tag == "Tree")

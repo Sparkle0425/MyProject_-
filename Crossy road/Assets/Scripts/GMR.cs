@@ -34,20 +34,25 @@ public class GMR : MonoBehaviour
     {
         get
         {
-            if(Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                _myScore++;
-            }
             return _myScore;
         }
         set
         {
-            if (_myScore > _bestScore)
+            if (_myScore >= _bestScore)
             {
                 _bestScore = _myScore;
                 SaveBestScore();
             }
         }
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            _myScore++;
+        }
+        myScore = _myScore;
     }
 
     void SaveBestScore()

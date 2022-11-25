@@ -8,12 +8,12 @@ public class CoinMaker : MonoBehaviour
 
     void Start()
     {
-            int rud = Random.Range(0, 100);
-            if (rud <= 1)
-            {
-                GameObject coin = Instantiate(coinPrefab) as GameObject;
-                coin.transform.position = new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z);
-                coin.transform.parent = GameObject.Find("Object").transform;
-            }
+        int rud = Random.Range(0, 100);
+        if (rud <= 1)
+        {
+             GameObject coin = Instantiate(coinPrefab) as GameObject;
+             coin.transform.position = new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z);
+             coin.transform.parent = GameObject.Find("Object").transform;
+        }
     }
 }
