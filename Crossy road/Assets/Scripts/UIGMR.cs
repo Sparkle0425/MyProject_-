@@ -45,4 +45,9 @@ public class UIGMR : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void StartButtonClick()
+    {
+        SceneManager.LoadScene(1);
+    }
 }
