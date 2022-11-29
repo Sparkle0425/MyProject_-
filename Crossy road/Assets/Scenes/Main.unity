@@ -172,7 +172,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &90375606
 RectTransform:
   m_ObjectHideFlags: 0
@@ -191,7 +191,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -110, y: 108.336914}
+  m_AnchoredPosition: {x: -110, y: 100}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &90375607
@@ -494,14 +494,16 @@ MonoBehaviour:
   coinPrefab: {fileID: 4163046950155305184, guid: e0decd1c360f1c144a6b179fc825b8a8, type: 3}
   carPrefab: {fileID: 7666639483532051088, guid: 4c34f82132b8fb142a681c4db47f83c5, type: 3}
   objectPtrfab: {fileID: 4163046950155305184, guid: e0decd1c360f1c144a6b179fc825b8a8, type: 3}
+  gameOverText: {fileID: 1683734312}
+  option: {fileID: 0}
   speed: 0
   power: 0
   playercollider: {fileID: 0}
   isDie: 0
-  gameOverText: {fileID: 1683734312}
+  isStart: 1
   coinCutText: {fileID: 161062872}
   scoreText: {fileID: 938724770}
-  isStop: {fileID: 0}
+  isStop: {fileID: 1133297623}
 --- !u!1 &476840047
 GameObject:
   m_ObjectHideFlags: 0

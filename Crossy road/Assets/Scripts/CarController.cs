@@ -19,7 +19,7 @@ public class CarController : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z - 1);
         }

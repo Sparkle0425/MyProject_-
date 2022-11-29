@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     public GameObject coinPrefab;
     public GameObject carPrefab;
     public GameObject objectPtrfab;
+    public GameObject gameOverText;
+    public GameObject option;
 
     public float speed = 0;
     public float power = 0;
@@ -17,12 +19,10 @@ public class PlayerController : MonoBehaviour
     public BoxCollider playercollider;
 
     public bool isDie = false;
-
-    public GameObject gameOverText;
+    public bool isStart = true;
 
     int _coinCut = 0;
     public Text coinCutText;
-
     public Text scoreText;
 
     public UIGMR isStop;
@@ -54,32 +54,32 @@ public class PlayerController : MonoBehaviour
         coinScore = _coinCut;
         coinCutText.text = coinScore + "";
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            ground.transform.position = new Vector3(ground.transform.position.x + 1, 0, ground.transform.position.z);
+        //if (Input.GetKeyDown(KeyCode.LeftArrow))
+        //{
+        //    ground.transform.position = new Vector3(ground.transform.position.x + 1, 0, ground.transform.position.z);
 
-            if (ground.transform.position.x >= 10)
-            {
-                ground.transform.position = new Vector3(10, 0, ground.transform.position.z);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            ground.transform.position = new Vector3(ground.transform.position.x - 1, 0, ground.transform.position.z);
+        //    if (ground.transform.position.x >= 10)
+        //    {
+        //        ground.transform.position = new Vector3(10, 0, ground.transform.position.z);
+        //    }
+        //}
+        //if (Input.GetKeyDown(KeyCode.RightArrow))
+        //{
+        //    ground.transform.position = new Vector3(ground.transform.position.x - 1, 0, ground.transform.position.z);
 
-            if (ground.transform.position.x <= -10)
-            {
-                ground.transform.position = new Vector3(-10, 0, ground.transform.position.z);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            ground.transform.position = new Vector3(ground.transform.position.x, 0, ground.transform.position.z - 1);
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            ground.transform.position = new Vector3(ground.transform.position.x, 0, ground.transform.position.z + 1);
-        }
+        //    if (ground.transform.position.x <= -10)
+        //    {
+        //        ground.transform.position = new Vector3(-10, 0, ground.transform.position.z);
+        //    }
+        //}
+        //if (Input.GetKeyDown(KeyCode.UpArrow))
+        //{
+        //    ground.transform.position = new Vector3(ground.transform.position.x, 0, ground.transform.position.z - 1);
+        //}
+        //if (Input.GetKeyDown(KeyCode.DownArrow))
+        //{
+        //    ground.transform.position = new Vector3(ground.transform.position.x, 0, ground.transform.position.z + 1);
+        //}
 
         if (isDie ==true)
         {
@@ -88,6 +88,12 @@ public class PlayerController : MonoBehaviour
             {
                 SceneManager.LoadScene(1);
             }
+            isStart = false;
+        }
+
+        if(isStart == false)
+        {
+            option.SetActive(true);
         }
     }
 

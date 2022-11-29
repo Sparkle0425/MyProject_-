@@ -16,15 +16,15 @@ public class GroundPrefab : MonoBehaviour
         }
         else if (Input.GetKeyUp(KeyCode.Mouse0))
         {
-            Vector2 endPds = Input.mousePosition;
+            Vector3 endPds = Input.mousePosition;
             float swipeLengthX = endPds.x - startPos.x;
             if (swipeLengthX >= 1)
             {
-                gameObject.transform.position = new Vector3(gameObject.transform.position.x + 0.25f, -1, gameObject.transform.position.z - 1);
+                gameObject.transform.position = new Vector3(gameObject.transform.position.x - 0.25f, -1, gameObject.transform.position.z);
             }
             else
             {
-                gameObject.transform.position = new Vector3(gameObject.transform.position.x - 0.25f, -1, gameObject.transform.position.z);
+                gameObject.transform.position = new Vector3(gameObject.transform.position.x + 0.25f, -1, gameObject.transform.position.z);
             }
             float swipeLengthY = endPds.y - startPos.y;
             if(swipeLengthY >= 1)
