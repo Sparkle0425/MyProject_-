@@ -495,7 +495,7 @@ MonoBehaviour:
   carPrefab: {fileID: 7666639483532051088, guid: 4c34f82132b8fb142a681c4db47f83c5, type: 3}
   objectPtrfab: {fileID: 4163046950155305184, guid: e0decd1c360f1c144a6b179fc825b8a8, type: 3}
   gameOverText: {fileID: 1683734312}
-  option: {fileID: 0}
+  option: {fileID: 90375605}
   speed: 0
   power: 0
   playercollider: {fileID: 0}

@@ -54,32 +54,32 @@ public class PlayerController : MonoBehaviour
         coinScore = _coinCut;
         coinCutText.text = coinScore + "";
 
-        //if (Input.GetKeyDown(KeyCode.LeftArrow))
-        //{
-        //    ground.transform.position = new Vector3(ground.transform.position.x + 1, 0, ground.transform.position.z);
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            ground.transform.position = new Vector3(ground.transform.position.x + 1, 0, ground.transform.position.z);
 
-        //    if (ground.transform.position.x >= 10)
-        //    {
-        //        ground.transform.position = new Vector3(10, 0, ground.transform.position.z);
-        //    }
-        //}
-        //if (Input.GetKeyDown(KeyCode.RightArrow))
-        //{
-        //    ground.transform.position = new Vector3(ground.transform.position.x - 1, 0, ground.transform.position.z);
+            if (ground.transform.position.x >= 10)
+            {
+                ground.transform.position = new Vector3(10, 0, ground.transform.position.z);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            ground.transform.position = new Vector3(ground.transform.position.x - 1, 0, ground.transform.position.z);
 
-        //    if (ground.transform.position.x <= -10)
-        //    {
-        //        ground.transform.position = new Vector3(-10, 0, ground.transform.position.z);
-        //    }
-        //}
-        //if (Input.GetKeyDown(KeyCode.UpArrow))
-        //{
-        //    ground.transform.position = new Vector3(ground.transform.position.x, 0, ground.transform.position.z - 1);
-        //}
-        //if (Input.GetKeyDown(KeyCode.DownArrow))
-        //{
-        //    ground.transform.position = new Vector3(ground.transform.position.x, 0, ground.transform.position.z + 1);
-        //}
+            if (ground.transform.position.x <= -10)
+            {
+                ground.transform.position = new Vector3(-10, 0, ground.transform.position.z);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            ground.transform.position = new Vector3(ground.transform.position.x, 0, ground.transform.position.z - 1);
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            ground.transform.position = new Vector3(ground.transform.position.x, 0, ground.transform.position.z + 1);
+        }
 
         if (isDie ==true)
         {
