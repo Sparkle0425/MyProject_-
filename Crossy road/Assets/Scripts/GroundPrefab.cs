@@ -5,37 +5,26 @@ using UnityEngine;
 public class GroundPrefab : MonoBehaviour
 {
     public float limitZ = 10;
+    public GameObject[] groundPrefab;
 
-    public Vector3 startPos;
+    private void Start()
+    {
+        int rnd = Random.Range(0, 2);
+        if(rnd == 0)
+        {
+            groundPrefab[0].SetActive(true);
+        }
+        else
+        {
+            groundPrefab[1].SetActive(true);
+        }
+    }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            startPos = Input.mousePosition;
-        }
-        else if (Input.GetKeyUp(KeyCode.Mouse0))
-        {
-            Vector3 endPds = Input.mousePosition;
-            float swipeLengthX = endPds.x - startPos.x;
-            if (swipeLengthX >= 1)
+            if (gameObject.transform.position.z <= -limitZ)
             {
-                gameObject.transform.position = new Vector3(gameObject.transform.position.x - 0.25f, -1, gameObject.transform.position.z);
+                Destroy(gameObject);
             }
-            else
-            {
-                gameObject.transform.position = new Vector3(gameObject.transform.position.x + 0.25f, -1, gameObject.transform.position.z);
-            }
-            float swipeLengthY = endPds.y - startPos.y;
-            if(swipeLengthY >= 1)
-            {
-                gameObject.transform.position = new Vector3(gameObject.transform.position.x, -1, gameObject.transform.position.z + 1);
-            }
-        }
-
-        if (gameObject.transform.position.z <= -limitZ)
-        {
-            Destroy(gameObject);
-        }
     }
 }

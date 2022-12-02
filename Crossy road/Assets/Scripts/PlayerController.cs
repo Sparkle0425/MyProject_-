@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour
     public GameObject gameOverText;
     public GameObject option;
 
-    public float speed = 0;
     public float power = 0;
 
     public BoxCollider playercollider;
@@ -149,7 +148,6 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 gameObject.transform.position = new Vector3(gameObject.transform.position.x + 1, gameObject.transform.position.y, gameObject.transform.position.z);
-
             }
         }
 

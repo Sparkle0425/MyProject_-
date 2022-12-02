@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
-    public Vector3 originpos;
-
     public float carSpeed = 5;
     public float limitX = 20;
-  
-    void Update()
+
+    private void Start()
     {
         RndSpeed();
+    }
+
+    void Update()
+    {
         transform.Translate(carSpeed * Time.deltaTime, 0, 0);
 
         if (transform.position.x > limitX)
