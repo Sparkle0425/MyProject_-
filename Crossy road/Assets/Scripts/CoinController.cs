@@ -6,6 +6,8 @@ public class CoinController : MonoBehaviour
 {
     public int CoinCut;
 
+    public GameObject effect;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow))
@@ -30,6 +32,7 @@ public class CoinController : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            Instantiate(effect, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }

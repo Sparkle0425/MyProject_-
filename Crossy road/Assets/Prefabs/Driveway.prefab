@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7326988743565595222}
   - component: {fileID: 4199645784976241899}
   - component: {fileID: 3120062003510659329}
-  - component: {fileID: 4438572157864751641}
+  - component: {fileID: 7198372415199849708}
   m_Layer: 0
   m_Name: Driveway
   m_TagString: Driveway
@@ -100,7 +100,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4438572157864751641
+--- !u!114 &7198372415199849708
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,11 +109,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7666639483532051088}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 298381516344b854aa1cea25bf9787b0, type: 3}
+  m_Script: {fileID: 11500000, guid: e5e852e31e6b7e144902f8b7f695ab03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   limitZ: 10
-  groundPrefab: []
 --- !u!1001 &112077001880261326
 PrefabInstance:
   m_ObjectHideFlags: 0

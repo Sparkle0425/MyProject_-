@@ -14,11 +14,15 @@ public class PlayerController : MonoBehaviour
     public GameObject option;
 
     public float power = 0;
+    public float moveSpeed = 1.0f;
+    public float moveTime = 1;
 
     public BoxCollider playercollider;
 
     public bool isDie = false;
     public bool isStart = true;
+    public bool move = false;
+    public bool testFlag = true;
 
     int _coinCut = 0;
     public Text coinCutText;
@@ -53,32 +57,34 @@ public class PlayerController : MonoBehaviour
         coinScore = _coinCut;
         coinCutText.text = coinScore + "";
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            ground.transform.position = new Vector3(ground.transform.position.x + 1, 0, ground.transform.position.z);
+        //if (Input.GetKeyDown(KeyCode.LeftArrow))
+        //{
+        //    ground.transform.position = new Vector3(ground.transform.position.x + 1, 0, ground.transform.position.z);
 
-            if (ground.transform.position.x >= 10)
-            {
-                ground.transform.position = new Vector3(10, 0, ground.transform.position.z);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            ground.transform.position = new Vector3(ground.transform.position.x - 1, 0, ground.transform.position.z);
+        //    if (ground.transform.position.x >= 10)
+        //    {
+        //        ground.transform.position = new Vector3(10, 0, ground.transform.position.z);
+        //    }
+        //}
+        //if (Input.GetKeyDown(KeyCode.RightArrow))
+        //{
+        //    ground.transform.position = new Vector3(ground.transform.position.x - 1, 0, ground.transform.position.z);
 
-            if (ground.transform.position.x <= -10)
-            {
-                ground.transform.position = new Vector3(-10, 0, ground.transform.position.z);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        //    if (ground.transform.position.x <= -10)
+        //    {
+        //        ground.transform.position = new Vector3(-10, 0, ground.transform.position.z);
+        //    }
+        //}
+        if (Input.GetKeyDown(KeyCode.UpArrow) && move == false)
         {
-            ground.transform.position = new Vector3(ground.transform.position.x, 0, ground.transform.position.z - 1);
+            if (testFlag) StartCoroutine(moveBlockTranslate(Vector3.left));
+            else StartCoroutine(moveBlockTime(Vector3.left));
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            ground.transform.position = new Vector3(ground.transform.position.x, 0, ground.transform.position.z + 1);
-        }
+        //if (Input.GetKeyDown(KeyCode.DownArrow))
+        //{
+        //    ground.transform.position = new Vector3(ground.transform.position.x, 0, ground.transform.position.z + 1);
+        //}
+
 
         if (isDie ==true)
         {
@@ -155,5 +161,43 @@ public class PlayerController : MonoBehaviour
         {
             _coinCut++;
         }
+    }
+
+    private IEnumerator moveBlockTime(Vector3 dir)
+    {
+        move = true;
+
+        float elapsedTime = 0.0f;
+
+        Vector3 currentPosition = gameObject.transform.position;
+        Vector3 targetPosition = currentPosition + dir;
+
+        while (elapsedTime < moveTime)
+        {
+            gameObject.transform.position = Vector3.Lerp(currentPosition, targetPosition, elapsedTime / moveTime); ;
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        gameObject.transform.position = targetPosition;
+
+        move = false;
+    }
+
+    private IEnumerator moveBlockTranslate(Vector3 dir)
+    {
+        move = true;
+
+        Vector3 targetPosition = gameObject.transform.position + dir;
+
+        while (Vector3.Magnitude(targetPosition - gameObject.transform.position) >= 0.01f)
+        {
+            gameObject.transform.Translate(dir * Time.deltaTime * moveSpeed);
+            yield return null;
+        }
+
+        gameObject.transform.position = targetPosition;
+
+        move = false;
     }
 }

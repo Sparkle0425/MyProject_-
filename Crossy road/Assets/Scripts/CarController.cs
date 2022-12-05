@@ -40,7 +40,7 @@ public class CarController : MonoBehaviour
         }
         else
         {
-            Random.Range(8, 13);
+            Random.Range(11, 20);
         }
     }
 }

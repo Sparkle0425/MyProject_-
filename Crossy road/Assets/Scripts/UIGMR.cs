@@ -24,7 +24,7 @@ public class UIGMR : MonoBehaviour
         isStop = true;
     }
 
-    void ReStartClick()
+    public void ReStartClick()
     {
         SceneManager.LoadScene(0);
     }
