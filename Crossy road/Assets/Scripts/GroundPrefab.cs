@@ -22,11 +22,6 @@ public class GroundPrefab : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            transform.position = new Vector3(transform.position.x, -1, transform.position.z - 1);
-        }
-
         if (gameObject.transform.position.z <= -limitZ)
         {
             Destroy(gameObject);

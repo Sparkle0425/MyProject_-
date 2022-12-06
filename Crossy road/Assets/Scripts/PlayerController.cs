@@ -12,10 +12,13 @@ public class PlayerController : MonoBehaviour
     public GameObject objectPtrfab;
     public GameObject gameOverText;
     public GameObject option;
+    public GameObject playerEffect;
 
     public float power = 0;
     public float moveSpeed = 1.0f;
     public float moveTime = 1;
+    public float curTime;
+    public float coolTime;
 
     public BoxCollider playercollider;
 
@@ -23,6 +26,7 @@ public class PlayerController : MonoBehaviour
     public bool isStart = true;
     public bool move = false;
     public bool testFlag = true;
+    public bool effect = false;
 
     int _coinCut = 0;
     public Text coinCutText;
@@ -57,34 +61,51 @@ public class PlayerController : MonoBehaviour
         coinScore = _coinCut;
         coinCutText.text = coinScore + "";
 
-        //if (Input.GetKeyDown(KeyCode.LeftArrow))
-        //{
-        //    ground.transform.position = new Vector3(ground.transform.position.x + 1, 0, ground.transform.position.z);
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            if (testFlag) StartCoroutine(moveBlockTime(Vector3.left));
+            else StartCoroutine(moveBlockTranslate(Vector3.left));
 
-        //    if (ground.transform.position.x >= 10)
-        //    {
-        //        ground.transform.position = new Vector3(10, 0, ground.transform.position.z);
-        //    }
-        //}
-        //if (Input.GetKeyDown(KeyCode.RightArrow))
-        //{
-        //    ground.transform.position = new Vector3(ground.transform.position.x - 1, 0, ground.transform.position.z);
+            if (transform.position.x >= 10)
+            {
+                transform.position = new Vector3(10, 0, transform.position.z);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            if (testFlag) StartCoroutine(moveBlockTime(Vector3.right));
+            else StartCoroutine(moveBlockTranslate(Vector3.right));
 
-        //    if (ground.transform.position.x <= -10)
-        //    {
-        //        ground.transform.position = new Vector3(-10, 0, ground.transform.position.z);
-        //    }
-        //}
+            if (transform.position.x <= -10)
+            {
+                transform.position = new Vector3(-10, 0, transform.position.z);
+            }
+        }
         if (Input.GetKeyDown(KeyCode.UpArrow) && move == false)
         {
-            if (testFlag) StartCoroutine(moveBlockTranslate(Vector3.left));
-            else StartCoroutine(moveBlockTime(Vector3.left));
+            if (testFlag) StartCoroutine(moveBlockTime(Vector3.forward));
+            else StartCoroutine(moveBlockTranslate(Vector3.forward));
         }
-        //if (Input.GetKeyDown(KeyCode.DownArrow))
-        //{
-        //    ground.transform.position = new Vector3(ground.transform.position.x, 0, ground.transform.position.z + 1);
-        //}
+        if (Input.GetKeyDown(KeyCode.DownArrow) && move == false)
+        {
+            if (testFlag) StartCoroutine(moveBlockTime(Vector3.back));
+            else StartCoroutine(moveBlockTranslate(Vector3.back));
+        }
 
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            playerEffect.SetActive(true);
+            effect = true;
+        }
+        if(effect == true)
+        {
+            curTime += Time.deltaTime;
+            if (curTime >= 0.15f)
+            {
+                playerEffect.SetActive(false);
+                curTime = 0;
+            }
+        }
 
         if (isDie ==true)
         {
@@ -169,17 +190,17 @@ public class PlayerController : MonoBehaviour
 
         float elapsedTime = 0.0f;
 
-        Vector3 currentPosition = gameObject.transform.position;
+        Vector3 currentPosition = transform.position;
         Vector3 targetPosition = currentPosition + dir;
 
         while (elapsedTime < moveTime)
         {
-            gameObject.transform.position = Vector3.Lerp(currentPosition, targetPosition, elapsedTime / moveTime); ;
+            transform.position = Vector3.Lerp(currentPosition, targetPosition, elapsedTime / moveTime); ;
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        gameObject.transform.position = targetPosition;
+        transform.position = targetPosition;
 
         move = false;
     }
@@ -188,15 +209,15 @@ public class PlayerController : MonoBehaviour
     {
         move = true;
 
-        Vector3 targetPosition = gameObject.transform.position + dir;
+        Vector3 targetPosition = transform.position + dir;
 
-        while (Vector3.Magnitude(targetPosition - gameObject.transform.position) >= 0.01f)
+        while (Vector3.Magnitude(targetPosition - transform.position) >= 0.01f)
         {
-            gameObject.transform.Translate(dir * Time.deltaTime * moveSpeed);
+            transform.Translate(dir * Time.deltaTime * moveSpeed);
             yield return null;
         }
 
-        gameObject.transform.position = targetPosition;
+        transform.position = targetPosition;
 
         move = false;
     }
