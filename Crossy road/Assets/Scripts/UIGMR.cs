@@ -5,23 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class UIGMR : MonoBehaviour
 {
+    public GameObject stopButton;
+
     public bool isStop = false;
 
-    private void Update()
-    {
-        if(isStop == true)
-        {
-            if(Input.GetMouseButtonDown(0))
-            {
-                Time.timeScale = 1;
-                isStop = false;
-            }
-        }
-    }
     public void StopButtonDown()
     {
         Time.timeScale = 0;
         isStop = true;
+        stopButton.SetActive(false);
+    }
+
+    public void ReStartButtonClick()
+    {
+        Time.timeScale = 1;
+        isStop = false;
     }
 
     public void ReStartClick()

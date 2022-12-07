@@ -13,7 +13,7 @@ public class MapMaker : MonoBehaviour
 
     void Start()
     {
-        for (int i = 0; i < 40; i++)
+        for (int i = 0; i < 60; i++)
         {
             if(i % 8 == 0 || i % 9 ==0)
             {
