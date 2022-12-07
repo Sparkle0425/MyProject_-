@@ -13,18 +13,20 @@ public class GroundPrefab : MonoBehaviour
         if(rnd == 0)
         {
             groundPrefab[0].SetActive(true);
+            Destroy(groundPrefab[1]);
         }
         else
         {
             groundPrefab[1].SetActive(true);
+            Destroy(groundPrefab[0]);
         }
     }
 
     void Update()
     {
-            if (gameObject.transform.position.z <= -limitZ)
-            {
-                Destroy(gameObject);
-            }
+        if (gameObject.transform.position.z <= -limitZ)
+        {
+            Destroy(gameObject);
+        }
     }
 }

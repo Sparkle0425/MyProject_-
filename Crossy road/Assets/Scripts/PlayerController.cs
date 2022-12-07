@@ -12,19 +12,29 @@ public class PlayerController : MonoBehaviour
     public GameObject objectPtrfab;
     public GameObject gameOverText;
     public GameObject option;
+    public GameObject playerEffect;
+    public GameObject duck;
+    public GameObject hitEffect;
 
     public float power = 0;
+    public float moveSpeed = 1.0f;
+    public float moveTime = 1;
+    public float curTime;
 
     public BoxCollider playercollider;
 
     public bool isDie = false;
     public bool isStart = true;
+    public bool move = false;
+    public bool testFlag = true;
+    public bool effect = false;
 
     int _coinCut = 0;
     public Text coinCutText;
     public Text scoreText;
 
     public UIGMR isStop;
+
     void Start()
     {
         playercollider = GetComponent<BoxCollider>();
@@ -55,29 +65,56 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            ground.transform.position = new Vector3(ground.transform.position.x + 1, 0, ground.transform.position.z);
+            if (testFlag) StartCoroutine(moveBlockTime(Vector3.left));
+            else StartCoroutine(moveBlockTranslate(Vector3.left));
 
-            if (ground.transform.position.x >= 10)
+            duck.transform.localRotation = Quaternion.Euler(0, -90, 0);
+
+            if (transform.position.x >= 10)
             {
-                ground.transform.position = new Vector3(10, 0, ground.transform.position.z);
+                transform.position = new Vector3(10, 0, transform.position.z);
             }
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            ground.transform.position = new Vector3(ground.transform.position.x - 1, 0, ground.transform.position.z);
+            if (testFlag) StartCoroutine(moveBlockTime(Vector3.right));
+            else StartCoroutine(moveBlockTranslate(Vector3.right));
 
-            if (ground.transform.position.x <= -10)
+            duck.transform.localRotation = Quaternion.Euler(0, 90, 0);
+
+            if (transform.position.x <= -10)
             {
-                ground.transform.position = new Vector3(-10, 0, ground.transform.position.z);
+                transform.position = new Vector3(-10, 0, transform.position.z);
             }
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow) && move == false)
         {
-            ground.transform.position = new Vector3(ground.transform.position.x, 0, ground.transform.position.z - 1);
+            if (testFlag) StartCoroutine(moveBlockTime(Vector3.forward));
+            else StartCoroutine(moveBlockTranslate(Vector3.forward));
+
+            duck.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow) && move == false)
         {
-            ground.transform.position = new Vector3(ground.transform.position.x, 0, ground.transform.position.z + 1);
+            if (testFlag) StartCoroutine(moveBlockTime(Vector3.back));
+            else StartCoroutine(moveBlockTranslate(Vector3.back));
+
+            duck.transform.localRotation = Quaternion.Euler(0, 180, 0);
+        }
+
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            playerEffect.SetActive(true);
+            effect = true;
+        }
+        if(effect == true)
+        {
+            curTime += Time.deltaTime;
+            if (curTime >= 0.15f)
+            {
+                playerEffect.SetActive(false);
+                curTime = 0;
+            }
         }
 
         if (isDie ==true)
@@ -112,6 +149,8 @@ public class PlayerController : MonoBehaviour
         {
             playercollider.size = new Vector3(0, 0, 0);
             isDie = true;
+            hitEffect.SetActive(true);
+            duck.transform.localScale = new Vector3(0.15f, 0.01f, 0.15f);
         }
 
         if (other.gameObject.tag == "Tree")
@@ -155,5 +194,43 @@ public class PlayerController : MonoBehaviour
         {
             _coinCut++;
         }
+    }
+
+    private IEnumerator moveBlockTime(Vector3 dir)
+    {
+        move = true;
+
+        float elapsedTime = 0.0f;
+
+        Vector3 currentPosition = transform.position;
+        Vector3 targetPosition = currentPosition + dir;
+
+        while (elapsedTime < moveTime)
+        {
+            transform.position = Vector3.Lerp(currentPosition, targetPosition, elapsedTime / moveTime); ;
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = targetPosition;
+
+        move = false;
+    }
+
+    private IEnumerator moveBlockTranslate(Vector3 dir)
+    {
+        move = true;
+
+        Vector3 targetPosition = transform.position + dir;
+
+        while (Vector3.Magnitude(targetPosition - transform.position) >= 0.01f)
+        {
+            transform.Translate(dir * Time.deltaTime * moveSpeed);
+            yield return null;
+        }
+
+        transform.position = targetPosition;
+
+        move = false;
     }
 }

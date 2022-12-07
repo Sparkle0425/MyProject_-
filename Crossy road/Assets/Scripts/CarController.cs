@@ -20,27 +20,11 @@ public class CarController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z - 1);
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z + 1);
-        }
     }
 
     void RndSpeed()
     {
-        int rnd = Random.Range(0, 100);
-        if(rnd >= 35)
-        {
-            Random.Range(5, 10);
-        }
-        else
-        {
-            Random.Range(8, 13);
-        }
+        int rnd = Random.Range(5,20);
+        carSpeed = rnd;
     }
 }

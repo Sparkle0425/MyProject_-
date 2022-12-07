@@ -11,6 +11,7 @@ TagManager:
   - Road
   - Driveway
   - Wall
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - UI
   - Tree
   - Player
-  - 
+  - post
   - 
   - 
   - 

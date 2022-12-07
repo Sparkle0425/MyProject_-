@@ -8,23 +8,6 @@ public class ObjectPrefab : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x + 1, 0, gameObject.transform.position.z);
-        }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x - 1, 0, gameObject.transform.position.z);
-        }
-        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z - 1);
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z + 1);
-        }
-
         if (gameObject.transform.position.z <= -limitZ)
         {
             Destroy(gameObject);
