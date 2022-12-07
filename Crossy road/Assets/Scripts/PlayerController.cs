@@ -13,12 +13,13 @@ public class PlayerController : MonoBehaviour
     public GameObject gameOverText;
     public GameObject option;
     public GameObject playerEffect;
+    public GameObject duck;
+    public GameObject hitEffect;
 
     public float power = 0;
     public float moveSpeed = 1.0f;
     public float moveTime = 1;
     public float curTime;
-    public float coolTime;
 
     public BoxCollider playercollider;
 
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
     public Text scoreText;
 
     public UIGMR isStop;
+
     void Start()
     {
         playercollider = GetComponent<BoxCollider>();
@@ -66,6 +68,8 @@ public class PlayerController : MonoBehaviour
             if (testFlag) StartCoroutine(moveBlockTime(Vector3.left));
             else StartCoroutine(moveBlockTranslate(Vector3.left));
 
+            duck.transform.localRotation = Quaternion.Euler(0, -90, 0);
+
             if (transform.position.x >= 10)
             {
                 transform.position = new Vector3(10, 0, transform.position.z);
@@ -76,6 +80,8 @@ public class PlayerController : MonoBehaviour
             if (testFlag) StartCoroutine(moveBlockTime(Vector3.right));
             else StartCoroutine(moveBlockTranslate(Vector3.right));
 
+            duck.transform.localRotation = Quaternion.Euler(0, 90, 0);
+
             if (transform.position.x <= -10)
             {
                 transform.position = new Vector3(-10, 0, transform.position.z);
@@ -85,11 +91,15 @@ public class PlayerController : MonoBehaviour
         {
             if (testFlag) StartCoroutine(moveBlockTime(Vector3.forward));
             else StartCoroutine(moveBlockTranslate(Vector3.forward));
+
+            duck.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
         if (Input.GetKeyDown(KeyCode.DownArrow) && move == false)
         {
             if (testFlag) StartCoroutine(moveBlockTime(Vector3.back));
             else StartCoroutine(moveBlockTranslate(Vector3.back));
+
+            duck.transform.localRotation = Quaternion.Euler(0, 180, 0);
         }
 
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.DownArrow))
@@ -139,6 +149,8 @@ public class PlayerController : MonoBehaviour
         {
             playercollider.size = new Vector3(0, 0, 0);
             isDie = true;
+            hitEffect.SetActive(true);
+            duck.transform.localScale = new Vector3(0.15f, 0.01f, 0.15f);
         }
 
         if (other.gameObject.tag == "Tree")
