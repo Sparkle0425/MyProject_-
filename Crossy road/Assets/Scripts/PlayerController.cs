@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     public bool isStart = true;
     public bool move = false;
     public bool testFlag = true;
-    public bool effect = false;
+    public bool effect = true;
 
     int _coinCut = 0;
     public Text coinCutText;
@@ -105,12 +105,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.DownArrow))
         {
             playerEffect.SetActive(true);
-            effect = true;
         }
+
         if(effect == true)
         {
             curTime += Time.deltaTime;
-            if (curTime >= 0.15f)
+            if (curTime >= 0.1f)
             {
                 playerEffect.SetActive(false);
                 curTime = 0;
@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour
     {   
         if(other.gameObject.tag == "Car")
         {
-            playercollider.size = new Vector3(0, 0, 0);
+            playercollider.enabled = false;
             isDie = true;
             hitEffect.SetActive(true);
             duck.transform.localScale = new Vector3(0.15f, 0.01f, 0.15f);
